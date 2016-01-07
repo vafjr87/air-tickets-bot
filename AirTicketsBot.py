@@ -9,6 +9,10 @@ print "Running AirTickets"
 
 def handle_message(msg):
 	pprint(msg)
+	receivedText  = msg[u'text']
+	messageSender = msg[u'from'][u'id']
+
+	bot.sendMessage(messageSender, receivedText)
 
 bot.notifyOnMessage(handle_message)
 
