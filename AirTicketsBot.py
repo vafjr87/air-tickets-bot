@@ -2,19 +2,16 @@ import telepot
 import time
 from pprint import pprint
 
-bot = telepot.Bot('176703220:AAGLqtZ531Lbmjguzv-9W4ui9CL3sKXgYK8')
+class MyBot(telepot.Bot):
+	def handle(self,msg):
+	        receivedText  = msg[u'text']
+	        messageSender = msg[u'from'][u'id']
 
-print "Running AirTickets"
+        	self.sendMessage(messageSender, receivedText)
 
+def main():
+	bot = MyBot('176703220:AAGLqtZ531Lbmjguzv-9W4ui9CL3sKXgYK8')
+	bot.notifyOnMessage()
 
-def handle_message(msg):
-	pprint(msg)
-	receivedText  = msg[u'text']
-	messageSender = msg[u'from'][u'id']
-
-	bot.sendMessage(messageSender, receivedText)
-
-bot.notifyOnMessage(handle_message)
-
-while 1:
-	time.sleep(10)
+	while 1:
+		time.sleep(10)
